@@ -8,7 +8,7 @@
       <base-button @click="confirmError">Okay</base-button>
     </template>
   </base-dialog>
-  <base-card>
+  <base-card :key="formKey">
     <form @submit.prevent="submitData">
       <div class="form-control">
         <label for="title">Title</label>
@@ -35,6 +35,7 @@ export default {
   data() {
     return {
       inputIsInvalid: false,
+      formKey:0,
     };
   },
   methods: {
@@ -53,6 +54,9 @@ export default {
       }
 
       this.addResource(enteredTitle, enteredDescription, enteredUrl);
+
+      this.formKey ++;
+
     },
     confirmError() {
       this.inputIsInvalid = false;
